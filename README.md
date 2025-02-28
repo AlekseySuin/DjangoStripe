@@ -1,3 +1,9 @@
+## Проект можно посмотреть онлайн на платформе Render
+```
+https://djangostripe-h8yh.onrender.com/items/2/
+```
+Либо же оффлайн, для этого ниже написаны этапы для запуска
+
 ## 1. Клонируйте проект
 
 git clone (https://github.com/AlekseySuin/DjangoStripe)
