@@ -33,4 +33,9 @@ docker-compose exec web python manage.py migrate
 ```
   http://localhost:8000/admin/
 ```
-  б)Войдите с учетными данными суперпользователя.
+  б) Войдите с учетными данными суперпользователя.
+2) Создание заказа (Order)
+  По аналогии с товаром
+
+3) Endpoints:
+   Описаны в файле `items.urls` 
