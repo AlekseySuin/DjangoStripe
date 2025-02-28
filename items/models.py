@@ -7,4 +7,7 @@ class Item(models.Model):
 
     def __str__(self):
         return self.name
+
+    def price_in_dollars(self):
+        return int(self.price * 100)
 # Create your models here.

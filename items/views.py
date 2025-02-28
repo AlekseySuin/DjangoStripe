@@ -10,6 +10,9 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def buy_item(request, id):
     item = get_object_or_404(Item, id=id)
+
+    price_in_dollars = item.price_in_dollars()
+
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         line_items=[{
@@ -18,7 +21,7 @@ def buy_item(request, id):
                 'product_data': {
                     'name':item.name,
                 },
-                'unit_amount':item.price,
+                'unit_amount':price_in_dollars,
             },
             'quantity':1,
         }],

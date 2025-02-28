@@ -1,7 +1,13 @@
 from pathlib import Path
+import environ
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+environ.Env.read_env(BASE_DIR / '.env')
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
@@ -10,17 +16,14 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6s@gie1o%l&c_64s#(1(hzxpqdg^u)-6$dqm5s=&dp92$qz6!0'
+SECRET_KEY = env('SECRET_KEY')
 
-STRIPE_SECRET_KEY = 'sk_test_51QwiVYHtEhsMc9anxoAXjAvfxENJ8YUmi28Mz4UUL18clEFmvQfs6y0NEo2X9NOHDfI0IYZqhsSjokHZpySVqDYd006Kw0l2Mf'
-STRIPE_PUBLIC_KEY = 'pk_test_51QwiVYHtEhsMc9anhhgxIMHpBxFmbOUI97JB7gEZAbj0EByIf9lCG2oDRmQ7Mc2oXeBp3i7xZQ8Pdgag1iV8TFTt006Q3blXzE'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
+STRIPE_PUBLIC_KEY = env('STRIPE_PUBLIC_KEY')
 
 ALLOWED_HOSTS = []
 
-
+DEBUG = env('DEBUG')
 # Application definition
 
 INSTALLED_APPS = [
