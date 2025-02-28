@@ -10,4 +10,14 @@ class Item(models.Model):
 
     def price_in_dollars(self):
         return int(self.price * 100)
-# Create your models here.
+
+
+class Order(models.Model):
+    items = models.ManyToManyField(Item)
+
+    def __str__(self):
+        return f"Order {self.id}"
+
+    def total_price(self):
+        # Вычисляем общую стоимость всех товаров в заказе
+        return sum(item.price for item in self.items.all())
