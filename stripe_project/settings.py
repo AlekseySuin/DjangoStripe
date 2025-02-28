@@ -18,6 +18,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 
+ALLOWED_HOSTS = env('ALLOWED_HOSTS')
+
 STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
 STRIPE_PUBLIC_KEY = env('STRIPE_PUBLIC_KEY')
 
