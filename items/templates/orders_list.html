@@ -24,19 +24,19 @@
                     {% endfor %}
                     {% if order.discount %}
                     <div class="discount">
-                        <span>Discount:</span>
+                        <span>Скидка:</span>
                         <span class="discount-amount">{{ order.discount.amount }}%</span>
                     </div>
                     {% endif %}
                     {% if order.tax %}
                     <div class="tax">
-                        <span>Tax:</span>
+                        <span>Налог:</span>
                         <span class="tax-rate">{{ order.tax.rate }}%</span>
                     </div>
                     {% endif %}
                 </ul>
                 <div class="order-total">
-                    <span>Total:</span>
+                    <span>Сумма:</span>
                     <span class="total-price">${{ order.total_price }}</span>
                 </div>
                 <button class="pay-button" onclick="location.href='/orders/{{order.id}}/'">Посмотреть детали</button>

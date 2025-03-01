@@ -45,6 +45,9 @@
                 method: 'GET',
             })
             .then(function(response) {
+                if (!response.ok) {
+                    return response.text().then(text => { throw new Error(text) });
+                }
                 return response.json();
             })
             .then(function(session) {
