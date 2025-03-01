@@ -24,11 +24,30 @@ def order_checkout_session(request, id):
                 },
                 'quantity':1,
             })
+        discounts = []
+        if order.discount:
+            discounts.append({
+                'coupon': stripe.Coupon.create(
+                    percent_off=order.discount.amount,
+                    duration="once",
+                ).id
+            })
 
+        tax_rates = []
+        if order.tax:
+            tax_rates.append(
+                stripe.TaxRate.create(
+                    display_name=order.tax.description,
+                    percentage=order.tax.rate,
+                    inclusive=False,
+                ).id
+            )
         session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=items,
             mode='payment',
+            discounts=discounts,
+            tax_rates=tax_rates,
             success_url=request.build_absolute_uri('/success/'),
             cancel_url=request.build_absolute_uri('/cancel/'),
         )

@@ -1,5 +1,5 @@
 {% load static %}
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -22,6 +22,18 @@
                         <span class="item-price">${{ item.price }}</span>
                     </li>
                     {% endfor %}
+                    {% if order.discount %}
+                    <div class="discount">
+                        <span>Discount:</span>
+                        <span class="discount-amount">{{ order.discount.amount }}%</span>
+                    </div>
+                    {% endif %}
+                    {% if order.tax %}
+                    <div class="tax">
+                        <span>Tax:</span>
+                        <span class="tax-rate">{{ order.tax.rate }}%</span>
+                    </div>
+                    {% endif %}
                 </ul>
                 <div class="order-total">
                     <span>Total:</span>
