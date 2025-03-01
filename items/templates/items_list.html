@@ -1,0 +1,25 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items List</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'items/css/new_style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Всего товаров: {{items|length}}</h1>
+        <div class="items-list">
+             {% for item in items %}
+            <div class="item-card">
+                <h2 class="item-name">{{ item.name }}</h2>
+                <p class="item-description">{{ item.description }}</p>
+                <p class="item-price">${{ item.price }}</p>
+                <button class="buy-button" onclick="location.href='/items/{{item.id}}/'">Подробнее</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

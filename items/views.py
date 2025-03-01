@@ -75,3 +75,9 @@ def order_detail(request, id):
         'order':order,
         'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
     })
+
+def items_get(request):
+    items = Item.objects.all()
+    return render(request, 'items_list.html', {
+        'items': items,
+    })
