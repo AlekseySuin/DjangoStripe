@@ -107,3 +107,16 @@ h1 {
 .pay-button:hover {
     background-color: #2980b9;
 }
+
+.discount, .tax {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.discount-amount, .tax-rate {
+    color: #e74c3c;
+    font-weight: bold;
+}
