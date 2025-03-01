@@ -7,23 +7,34 @@
     <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="items-list">
-            <div class="item-card">
-                <h2 class="item-name">{{ item.name }}</h2>
-                <p class="item-description">{{ item.description }}</p>
-                <p class="item-price">${{ item.price }}</p>
-                <button class="buy-button" id="checkout-button">Buy</button>
+    <div class="order-card">
+        <h2>Order #{{ order.id }}</h2>
+        <ul class="items-list">
+            {% for item in order.items.all %}
+            <li class="item">
+                <span class="item-name">{{ item.name }}</span>
+                <span class="item-price">${{ item.price }}</span>
+            </li>
+            {% endfor %}
+            {% if order.discount %}
+            <div class="discount">
+                <span>Discount:</span>
+                <span class="discount-amount">{{ order.discount.amount }}%</span>
             </div>
+            {% endif %}
+            {% if order.tax %}
+            <div class="tax">
+                <span>Tax:</span>
+                <span class="tax-rate">{{ order.tax.rate }}%</span>
+            </div>
+            {% endif %}
+        </ul>
+        <div class="order-total">
+            <span>Total:</span>
+            <span class="total-price">${{ order.total_price }}</span>
         </div>
+        <button class="pay-button" id="checkout-button">Buy</button>
     </div>
-    <h1>Order {{ order.id }}</h1>
-    <ul>
-        {% for item in order.items.all %}
-            <li>{{ item.name }} - ${{ item.price }}</li>
-        {% endfor %}
-    </ul>
-    <p>Total: ${{ order.total_price }}</p>
     <script>
         var stripe = Stripe('{{ stripe_public_key }}');
         var checkoutButton = document.getElementById('checkout-button');
