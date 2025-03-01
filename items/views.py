@@ -81,3 +81,9 @@ def items_get(request):
     return render(request, 'items_list.html', {
         'items': items,
     })
+
+def orders_get(request):
+    orders = Order.objects.all()
+    return render(request, 'orders_list.html', {
+        'orders': orders,
+    })

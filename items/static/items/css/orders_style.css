@@ -1,0 +1,109 @@
+/* Основные стили */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 40px;
+}
+
+/* Список заказов */
+.orders-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Карточка заказа */
+.order-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.order-card h2 {
+    font-size: 20px;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+/* Список товаров в заказе */
+.items-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.items-list .item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.items-list .item:last-child {
+    border-bottom: none;
+}
+
+.item-name {
+    font-size: 14px;
+    color: #666;
+}
+
+.item-price {
+    font-size: 14px;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+/* Общая стоимость заказа */
+.order-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.total-price {
+    color: #27ae60;
+}
+
+/* Кнопка оплаты */
+.pay-button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.pay-button:hover {
+    background-color: #2980b9;
+}
