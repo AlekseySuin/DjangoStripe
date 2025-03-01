@@ -46,10 +46,11 @@ def order_checkout_session(request, id):
             payment_method_types=['card'],
             line_items=items,
             mode='payment',
-            discounts=discounts,
-            tax_rates=tax_rates,
             success_url=request.build_absolute_uri('/success/'),
             cancel_url=request.build_absolute_uri('/cancel/'),
+            automatic_tax={
+                'enabled': True,  # Включаем автоматический расчет налогов
+            },
         )
         return JsonResponse({'session_id': session.id})
     except Order.DoesNotExist:
