@@ -9,26 +9,25 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 def order_checkout_session(request, id):
-    try:
         order = get_object_or_404(Order, id=id)
         order.calculate_total()
         currency = order.currency
         try:
-        intent = stripe.PaymentIntent.create(
-            amount=int(order.total_amount * 100),  # Сумма в центах/копейках
-            currency=currency,
-            metadata={
-                'order_id': order.id,
-                'discount': order.discount.name if order.discount else None,
-                'tax': order.tax.name if order.tax else None,
-            },
-        )
-        return JsonResponse({
-            'clientSecret': intent.client_secret,
-            'publicKey': settings.STRIPE_PUBLIC_KEY[currency],
-        })
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=400)
+            intent = stripe.PaymentIntent.create(
+                amount=int(order.total_amount * 100),  # Сумма в центах/копейках
+                currency=currency,
+                metadata={
+                    'order_id': order.id,
+                    'discount': order.discount.name if order.discount else None,
+                    'tax': order.tax.name if order.tax else None,
+                },
+            )
+            return JsonResponse({
+                'clientSecret': intent.client_secret,
+                'publicKey': settings.STRIPE_KEYS[currency]['public_key'],
+            })
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
 
 
 def buy_item(request, id):
