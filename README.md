@@ -63,4 +63,7 @@ docker-compose exec web python manage.py migrate
   По аналогии с товаром
 
 3) Endpoints:
-   Описаны в файле `items.urls` 
+   Описаны выше во вкладке `пояснения про Endpoints`
+
+## Для проверки работоспособности Stripe Payment Intent используйте данные из этого источника
+`https://docs.stripe.com/testing?testing-method=card-numbers#visa`
