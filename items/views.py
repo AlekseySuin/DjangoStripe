@@ -7,7 +7,6 @@ import stripe
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
-
 def order_checkout_session(request, id):
         order = get_object_or_404(Order, id=id)
         order.calculate_total()
@@ -18,13 +17,11 @@ def order_checkout_session(request, id):
                 currency=currency,
                 metadata={
                     'order_id': order.id,
-                    'discount': order.discount.name if order.discount else None,
-                    'tax': order.tax.name if order.tax else None,
                 },
             )
             return JsonResponse({
                 'clientSecret': intent.client_secret,
-                'publicKey': settings.STRIPE_KEYS[currency],
+                'publicKey': settings.STRIPE_PUBLIC_KEY,
             })
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
