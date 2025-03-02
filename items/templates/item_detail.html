@@ -13,7 +13,15 @@
             <div class="item-card">
                 <h2 class="item-name">{{ item.name }}</h2>
                 <p class="item-description">{{ item.description }}</p>
-                <p class="item-price">${{ item.price }}</p>
+                <p class="item-price">
+                    {% if item.currency == "usd" %}
+                        ${{ item.price }}
+                    {% elif item.currency == "rub" %}
+                        ₽{{ item.price }}
+                    {% else %}
+                        {{ item.price }} {{ item.currency|upper }}
+                    {% endif %}
+                </p>
                 <button class="buy-button" id="checkout-button">Купить</button>
             </div>
         </div>

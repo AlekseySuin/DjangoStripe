@@ -36,7 +36,7 @@ def buy_item(request, id):
         payment_method_types=['card'],
         line_items=[{
             'price_data':{
-                'currency': 'usd',
+                'currency': item.currency,
                 'product_data': {
                     'name':item.name,
                 },

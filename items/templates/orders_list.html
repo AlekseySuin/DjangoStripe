@@ -10,16 +10,18 @@
 </head>
 <body>
     <div class="container">
-        <h1>Your Orders</h1>
+        <h1>Список заказов</h1>
         <div class="orders-list">
             {% for order in orders %}
             <div class="order-card">
-                <h2>Order #{{ order.id }}</h2>
+                <h2>Заказ #{{ order.id }}</h2>
                 <ul class="items-list">
                     {% for item in order.items.all %}
                     <li class="item">
                         <span class="item-name">{{ item.name }}</span>
-                        <span class="item-price">${{ item.price }}</span>
+                        <span class="item-price">
+                            {{ item.currency|upper }} {{ item.price }}
+                        </span>
                     </li>
                     {% endfor %}
                     {% if order.discount %}
@@ -37,7 +39,7 @@
                 </ul>
                 <div class="order-total">
                     <span>Сумма:</span>
-                    <span class="total-price">${{ order.total_price }}</span>
+                    <span class="total-price">{{ order.currency|upper }} {{ order.calculate_total }}</span>
                 </div>
                 <button class="pay-button" onclick="location.href='/orders/{{order.id}}/'">Посмотреть детали</button>
             </div>

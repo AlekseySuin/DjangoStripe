@@ -39,14 +39,24 @@ class Order(models.Model):
     discount = models.ForeignKey(Discount, on_delete=models.SET_NULL, null=True, blank=True)
     tax = models.ForeignKey(Tax, on_delete=models.SET_NULL, null=True, blank=True)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    currency = models.CharField(max_length=3, choices=[('usd', 'USD'), ('rub', 'RUB')],default='usd')
+    currency = models.CharField(max_length=3, choices=[('usd', 'USD'), ('rub', 'RUB')],default='rub')
 
 
     def __str__(self):
         return f"Order {self.id}"
 
+    def convert_currency(self, amount, currency):
+        if currency == self.currency:
+            return amount
+        if self.currency == 'rub' and currency == 'usd':
+            return amount * 90
+        elif self.currency == 'usd' and currency == 'rub':
+            return amount / 90
+
     def calculate_total(self):
-        total = sum(item.price for item in self.items.all())
+        total = 0
+        for item in self.items.all():
+            total += self.convert_currency(item.price, item.currency)
         if self.discount:
             total -= total * (self.discount.amount / 100)
         if self.tax and not self.tax.rate:

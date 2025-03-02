@@ -17,7 +17,9 @@
             {% for item in order.items.all %}
             <li class="item">
                 <span class="item-name">{{ item.name }}</span>
-                <span class="item-price">${{ item.price }}</span>
+                <span class="item-price">
+                    {{ item.currency|upper }} {{ item.price }}
+                </span>
             </li>
             {% endfor %}
             {% if order.discount %}
@@ -35,7 +37,7 @@
         </ul>
         <div class="order-total">
             <span>Total:</span>
-            <span class="total-price">${{ order.calculate_total }}</span>
+            <span class="total-price">{{ order.currency|upper }} {{ order.calculate_total }}</span>
         </div>
         <div id="card-element" style="margin: 20px 0; padding: 10px; border: 1px solid #ccc; border-radius: 4px;"></div>
         <button class="pay-button" id="pay-button">Buy</button>
