@@ -1,12 +1,12 @@
 ## Степень реализации проекта:
-:white_check_mark: Запуск используя Docker
-:white_check_mark: Использование environment variables
-:white_check_mark: Просмотр Django Моделей в Django Admin панели
-:white_check_mark: Запуск приложения на удаленном сервере, доступном для тестирования, с кредами от админки
-:white_check_mark: Модель Order, в которой можно объединить несколько Item и сделать платёж в Stripe на содержимое Order c общей стоимостью всех Items
-:white_check_mark: Модели Discount, Tax, которые можно прикрепить к модели Order и связать с соответствующими атрибутами при создании платежа в Stripe - в таком случае они корректно отображаются в Stripe Checkout форме. 
-:white_check_mark: Добавить поле Item.currency, создать 2 Stripe Keypair на две разные валюты и в зависимости от валюты выбранного товара предлагать оплату в соответствующей валюте
-:white_check_mark: Реализовать не Stripe Session, а Stripe Payment Intent.
+:white_check_mark: Запуск используя Docker </br>
+:white_check_mark: Использование environment variables </br>
+:white_check_mark: Просмотр Django Моделей в Django Admin панели </br>
+:white_check_mark: Запуск приложения на удаленном сервере, доступном для тестирования, с кредами от админки </br>
+:white_check_mark: Модель Order, в которой можно объединить несколько Item и сделать платёж в Stripe на содержимое Order c общей стоимостью всех Items </br>
+:white_check_mark: Модели Discount, Tax, которые можно прикрепить к модели Order и связать с соответствующими атрибутами при создании платежа в Stripe - в таком случае они корректно отображаются в Stripe Checkout форме.  </br>
+:white_check_mark: Добавить поле Item.currency, создать 2 Stripe Keypair на две разные валюты и в зависимости от валюты выбранного товара предлагать оплату в соответствующей валюте </br>
+:white_check_mark: Реализовать не Stripe Session, а Stripe Payment Intent. </br>
 > Оставил Stripe Session на покупку Item для наглядности
 
 
