@@ -38,8 +38,8 @@ class Order(models.Model):
     items = models.ManyToManyField(Item)
     discount = models.ForeignKey(Discount, on_delete=models.SET_NULL, null=True, blank=True)
     tax = models.ForeignKey(Tax, on_delete=models.SET_NULL, null=True, blank=True)
-    total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)  # Итоговая сумма
-    currency = models.CharField(max_length=3, choices=[('usd', 'USD'), ('rub', 'RUB')])  # Валюта заказа
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    currency = models.CharField(max_length=3, choices=[('usd', 'USD'), ('rub', 'RUB')],default='usd')
 
 
     def __str__(self):
@@ -48,9 +48,9 @@ class Order(models.Model):
     def calculate_total(self):
         total = sum(item.price for item in self.items.all())
         if self.discount:
-            total -= total * (self.discount.percent_off / 100)
-        if self.tax and not self.tax.inclusive:
-            total += total * (self.tax.percentage / 100)
+            total -= total * (self.discount.amount / 100)
+        if self.tax and not self.tax.rate:
+            total += total * (self.tax.rate / 100)
         self.total_amount = total
         self.save()
         return total

@@ -14,7 +14,7 @@ def order_checkout_session(request, id):
         currency = order.currency
         try:
             intent = stripe.PaymentIntent.create(
-                amount=int(order.total_amount * 100),  # Сумма в центах/копейках
+                amount=int(order.total_amount * 100),
                 currency=currency,
                 metadata={
                     'order_id': order.id,
@@ -24,7 +24,7 @@ def order_checkout_session(request, id):
             )
             return JsonResponse({
                 'clientSecret': intent.client_secret,
-                'publicKey': settings.STRIPE_KEYS[currency]['public_key'],
+                'publicKey': settings.STRIPE_KEYS[currency],
             })
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
